@@ -8,7 +8,7 @@
 
 - Setup
 Assuming you have proper setup of golang build system.
-1) Pull the project located at https://git.cse.iitb.ac.in/jayeshk/cs733.git
+1) Pull the project located at https://github.com/jayeshjk/CS733Project
 2) cd $GOPATH/src/github.com/jayeshk/cs733/assignment4
 3) go build
 4) go install
