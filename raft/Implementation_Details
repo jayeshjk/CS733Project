@@ -1,0 +1,20 @@
+Implementation Details:
+
+Following are the files and their brief description:
+
+1) sm.go : It contains definition of raft state machine.
+2) event.go : It contains definitions of events in the system. To achieve inheritancee like organization I have implemented event as follows:
+	There is one Event struct and it contains pointers to subtypes of event, which in turen contains data about specific event.
+3) action.go: It contains definitions of actions in the system. Idea similar to Event is used.
+
+4) eventWrapper.go , actionWrapper.go : These files contain functions to create Event and Action objects. e.g. function
+	MakeAppendEntriesReq(..parameters..) returns an Event with pointer to struct containing information related to AppendEntriesReq
+	event.
+5) smWrapper.go : Apart from basic functions which create a raft state machine, it contains RouteEvent(ev) function which based on type
+	type of event and state of raft S.M. calls appropriate function. This function is used for testing in this assignment.
+	
+6) smFollowerMethods.go, smCandidateMethods.go, smLeaderMethods.go: These files contain implementation of responses to various events
+	based on states. This is core functionality of RAFT SM. Functions in these files are directly invoked by RouteEvent in smWrapper.go.
+	
+7) sm_test.go, follower_test.go,candidate_test.go, leader_test.go : Contain testing functions for above files. Purpose of each test function
+	is briefly described by comments at the beginning of function. 
